@@ -1,6 +1,11 @@
 package org.ncu.hirewheels.entities;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "users") // The name of the database table
@@ -10,7 +15,7 @@ public class User {
     @Column(name = "user_id")
     private Long userId;
 
-    @Column(name = "first_name", length = 50, nullable = false)
+	@Column(name = "first_name", length = 50, nullable = false)
     private String firstName;
 
     @Column(name = "last_name", length = 50)
@@ -25,9 +30,9 @@ public class User {
     @Column(name = "mobile_no", length = 10, nullable = false, unique = true)
     private String mobileNo;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
-    private Role role;
+//    @ManyToOne
+//    @JoinColumn(name = "role_id", referencedColumnName = "role_id")
+//    private Role role;
 
     @Column(name = "wallet_money", precision = 10, scale = 2, columnDefinition = "NUMERIC(10,2) default 10000.00")
     private float walletMoney;
@@ -36,6 +41,18 @@ public class User {
 
     // You can also add constructors and other methods as needed
 
+    public User(Long userId, String firstName, String lastName, String password, String email, String mobileNo,
+			float walletMoney) {
+		super();
+		this.userId = userId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.password = password;
+		this.email = email;
+		this.mobileNo = mobileNo;
+		this.walletMoney = walletMoney;
+	}
+    
     public Long getUserId() {
 		return userId;
 	}
@@ -84,13 +101,13 @@ public class User {
 		this.mobileNo = mobileNo;
 	}
 
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
+//	public Role getRole() {
+//		return role;
+//	}
+//
+//	public void setRole(Role role) {
+//		this.role = role;
+//	}
 
 	public float getWalletMoney() {
 		return walletMoney;

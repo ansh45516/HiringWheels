@@ -11,9 +11,13 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/users")
 public class UserController {
-	@Autowired
 	UserDAO userDAO;
 
+	@Autowired
+	public UserController(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+	
     @GetMapping
     public List<User> getAllUsers() {
         return userDAO.findAll();
